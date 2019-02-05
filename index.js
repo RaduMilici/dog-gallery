@@ -1,5 +1,7 @@
 import fetchData from "./fetch.js";
-import "./dogPicture.js";
+import "./components/dogPicture.js";
+import "./components/notFound.js";
+const gallery = document.querySelector("#gallery");
 
 async function onBreedSearch() {
     clearGallery();
@@ -9,13 +11,14 @@ async function onBreedSearch() {
     imageURLs.forEach(URL => {
         const element = document.createElement('dog-picture');
         element.src = URL;
-        document.querySelector("#gallery").appendChild(element);
+        gallery.appendChild(element);
     });
+
+    const notFoundElement = document.createElement('not-found');
+    gallery.appendChild(notFoundElement);
 }
 
 function clearGallery() {
-    const gallery = document.querySelector("#gallery");
-
     while(gallery.firstChild) {
         gallery.removeChild(gallery.firstChild);
     }
